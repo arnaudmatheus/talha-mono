@@ -1,0 +1,73 @@
+{
+  "text": "A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. A leitura tem altura e ritmo. const title = items.filter(valid); tipiti antigo Estrada. ",
+  "characters": 1760,
+  "method": "Median of 5 batches of 20 complete HB shapes after warmup; new buffer for every call; fonts loaded before timing.",
+  "python": "3.14.7",
+  "harfbuzz": "14.6.0",
+  "runs": [
+    {
+      "font": "build/beta5-baseline/TalhaMono-Regular.otf",
+      "font_bytes": 949436,
+      "features": {
+        "calt": 1,
+        "ss11": 0
+      },
+      "batch_ms_per_run": [
+        0.22154285106807947,
+        0.22351219959091395,
+        0.21928949863649905,
+        0.218794250395149,
+        0.2174194494727999
+      ],
+      "median_ms": 0.21928949863649905
+    },
+    {
+      "font": "build/beta5-baseline/TalhaMono-Regular.otf",
+      "font_bytes": 949436,
+      "features": {
+        "calt": 1,
+        "ss11": 1
+      },
+      "batch_ms_per_run": [
+        0.38271610101219267,
+        0.38538304797839373,
+        0.3811502509051934,
+        0.3807330009294674,
+        0.39761450025253
+      ],
+      "median_ms": 0.38271610101219267
+    },
+    {
+      "font": "build/TalhaMono-Regular.otf",
+      "font_bytes": 1801064,
+      "features": {
+        "calt": 1,
+        "ss11": 0
+      },
+      "batch_ms_per_run": [
+        0.22119464993011206,
+        0.21743544784840196,
+        0.21882370056118816,
+        0.21756564965471625,
+        0.21726030099671334
+      ],
+      "median_ms": 0.21756564965471625
+    },
+    {
+      "font": "build/TalhaMono-Regular.otf",
+      "font_bytes": 1801064,
+      "features": {
+        "calt": 1,
+        "ss11": 1
+      },
+      "batch_ms_per_run": [
+        2.2238132485654205,
+        2.224715249030851,
+        2.2269790002610534,
+        2.2119384491816163,
+        2.2576340998057276
+      ],
+      "median_ms": 2.224715249030851
+    }
+  ]
+}

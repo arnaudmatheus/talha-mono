@@ -6,14 +6,18 @@
 #                                               just a part (how CI splits the work)
 # FAMILIES: normal wide text    STYLES: Regular Bold Italic BoldItalic
 # (Text has only Regular and Italic). JOBS: processes at once (default 4).
+# HINT_JOBS: workers per autohinter (default 2; use 1 in restricted sandboxes).
+# TALHA_BUILD_DIR: isolated output (default build).
 set -euo pipefail
 cd "$(dirname "$0")"
 PY="${1:-python3}"
 JOBS="${JOBS:-4}"
+HINT_JOBS="${HINT_JOBS:-2}"
 FAMILIES="${FAMILIES:-normal wide text}"
 STYLES="${STYLES:-Regular Bold Italic BoldItalic}"
 NF_DIR="${NF_DIR:-/usr/share/fonts/OTF}"
-mkdir -p build
+TALHA_BUILD_DIR="${TALHA_BUILD_DIR:-build}"
+mkdir -p "$TALHA_BUILD_DIR"
 
 # Every task runs in the background and each one's exit status is checked:
 # a failing merge.py fails the build (a bare `wait` always returns 0, which
@@ -41,9 +45,9 @@ for fam in $FAMILIES; do
   esac
   for file in $STYLES; do
     [[ $fam == text && $file != Regular && $file != Italic ]] && continue
-    run "$PY" tools/merge.py "sources/upstream/MonaspaceRadon-$file.otf" "build/$prefix-$file.otf" \
+    run "$PY" tools/merge.py "sources/upstream/MonaspaceRadon-$file.otf" "$TALHA_BUILD_DIR/$prefix-$file.otf" \
         --style "$(style_name "$file")" "${flag[@]}"
-    built+=("build/$prefix-$file.otf")
+    built+=("$TALHA_BUILD_DIR/$prefix-$file.otf")
   done
 done
 collect
@@ -56,9 +60,9 @@ command -v "$AUTOHINT" >/dev/null || AUTOHINT=otfautohint
 if command -v "$AUTOHINT" >/dev/null; then
   for f in "${built[@]}"; do
     # i l j q 1 (and t f in the italics) stay unhinted (see tools/nohint.py).
-    # -p 2: otfautohint opens one process per core; with several files at
+    # Bound the workers: otfautohint opens one process per core; with several files at
     # once that reached 30 processes and ran out of memory.
-    run "$AUTOHINT" -p 2 -x "$("$PY" tools/nohint.py "$f")" "$f"
+    run "$AUTOHINT" -p "$HINT_JOBS" -x "$("$PY" tools/nohint.py "$f")" "$f"
   done
   collect
 else
@@ -72,7 +76,7 @@ for f in "${built[@]}"; do
   src="$NF_DIR/MonaspiceRnNerdFontMono-$file.otf"
   [[ -f $src ]] || { echo "no $src: skipping the NF build of $f" >&2; continue; }
   base="$(basename "$f" .otf)"
-  run "$PY" tools/nerd.py "$f" "$src" "build/${base%-*}NF-$file.otf"
+  run "$PY" tools/nerd.py "$f" "$src" "$TALHA_BUILD_DIR/${base%-*}NF-$file.otf"
 done
 collect
-ls -la build/TalhaMono*.otf
+ls -la "$TALHA_BUILD_DIR"/TalhaMono*.otf

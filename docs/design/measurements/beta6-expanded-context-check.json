@@ -1,0 +1,182 @@
+[
+  {
+    "face": "TalhaMono-Bold.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-BoldItalic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoNF-Bold.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoNF-BoldItalic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoNF-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoNF-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoText-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoText-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoTextNF-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoTextNF-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Bold.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-BoldItalic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWideNF-Bold.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWideNF-BoldItalic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWideNF-Italic.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWideNF-Regular.otf",
+    "attachment_bases": 1314,
+    "spacing_alternates": 702,
+    "mark_feature_combinations": 4,
+    "mark_samples": 9,
+    "code_feature_combinations": 8,
+    "result": "PASS"
+  }
+]

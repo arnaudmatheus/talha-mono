@@ -14,6 +14,7 @@ from shapely.ops import unary_union
 import caps
 import ornament
 import pen
+from swash_caps import PILOT_CAPITALS, swash_shape
 from build_state import BuildState
 from gsub_features import add_single_subst_feature
 
@@ -66,6 +67,15 @@ def _place_ornaments(state: BuildState) -> dict[int, str]:
     return new_cmap
 
 
+def _capital_swash(state: BuildState, cap: str) -> BaseGeometry:
+    fn, dx = state.glyphs[cap].strokes, state.placed[cap]
+    if cap in PILOT_CAPITALS:
+        return swash_shape(cap, state.nib, state.opts.slant_deg, dx)
+    base, _ = pen.place(fn(), *state.nib, dx=dx)
+    rasgo = ornament.render(ornament.flourish(base), [], *state.nib)
+    return unary_union([base, rasgo])
+
+
 def _add_capitulares(state: BuildState) -> tuple[dict[str, str], dict[str, str]]:
     """Carved (titl) and flourished (swsh) forms of each capital."""
     w, t = state.nib
@@ -78,9 +88,7 @@ def _add_capitulares(state: BuildState) -> tuple[dict[str, str], dict[str, str]]
         carved = affinity.translate(ornament.carved(strokes, w, t), dx, 0)
         state.writer.add(f"{cap}.titl", carved)
         titl[cap] = f"{cap}.titl"
-        base, _ = pen.place(fn(), w, t, dx=dx)
-        rasgo = ornament.render(ornament.flourish(base), [], w, t)
-        state.writer.add(f"{cap}.swsh", unary_union([base, rasgo]))
+        state.writer.add(f"{cap}.swsh", _capital_swash(state, cap))
         swsh[cap] = f"{cap}.swsh"
     return titl, swsh
 

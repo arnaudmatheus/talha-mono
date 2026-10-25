@@ -127,20 +127,12 @@ def render(
 
 # ---------------------------------------------------------------- florões
 def leaf_ne(heavy: bool = False) -> Motif:
-    """Rocalha leaf pointing north-east: a pointed blade with its vein, and a
-    C-scroll volute where the stem turns under."""
-    upper = path(("M", (-250, -250)), ("C", (-300, 90), (-20, 360), (340, 340)))
-    lower = path(("M", (-250, -250)), ("C", (90, -300), (360, -20), (340, 340)))
-    vein = path(("M", (-250, -250)), ("C", (0, 20), (150, 160), (270, 270)))
-    stem = path(("M", (-250, -250)), ("C", (-290, -290), (-330, -330), (-380, -330)))
-    curl = volute(-380, -170, 160, -90, cw=False)
-    strokes = (
-        [(upper, 0.75), (lower, 0.75), fine(stem)]
-        + curl
-        + ([] if heavy else [fine(vein)])
-    )
-    fills = [upper + list(reversed(lower))] if heavy else []
-    return strokes, fills
+    """Rocalha leaf pointing north-east: scalloped lobes, fine ribs, and a
+    supporting C-scroll. Display pilot, October 2026."""
+    # Keep the study module's helpers outside the core ornament vocabulary.
+    from display_motifs import leaf_study
+
+    return leaf_study(heavy=heavy)
 
 
 def vine_ne(heavy: bool = False) -> Motif:
@@ -330,18 +322,11 @@ RT, RB = 1060, 260  # ribbon edges: from x-height down past the baseline
 
 
 def ribbon_end_left() -> Motif:
-    """The end of an inscribed ribbon: the band runs to the cell's right edge
-    to meet the words, is creased once, and ends in a swallowtail."""
-    mid = (RT + RB) / 2
-    edge = CELL - 70  # the nib's half-width: the ink ends exactly at the cell edge
-    band = path(
-        ("M", (edge, RT)),
-        ("L", (200, RT)),
-        ("L", (370, mid)),
-        ("L", (200, RB)),
-        ("L", (edge, RB)),
-    )
-    return [(band, 0.8)], []
+    """The end of an inscribed ribbon: a front band, a rear swallowtail,
+    and the crease between them. A small margin keeps the Bold inside the cell."""
+    from display_motifs import ribbon_study
+
+    return ribbon_study(cell=CELL)
 
 
 FILACTERIOS: dict[int, Callable[[], Motif]] = {

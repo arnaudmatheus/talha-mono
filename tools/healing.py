@@ -9,9 +9,11 @@ import re
 from shapely.ops import unary_union
 
 import pen
-from build_state import BuildState
+from accents import composition_strokes
+from build_state import BuildState, ContextForm
+from pen_types import Stroke
 
-VARIANT = re.compile(r"^([A-Za-z]+)\.(left|right|both)$")
+VARIANT = re.compile(r"^([A-Za-z0-9_]+)\.(left|right|both)$")
 
 
 def _stretch(state: BuildState, base: str, variant: str) -> tuple[float, float]:
@@ -48,6 +50,7 @@ def _heal(state: BuildState, base: str, variant: str) -> None:
     ]
     state.writer.put(variant, unary_union([pen.sweep(st, w, t) for st in strokes]))
     state.replaced.append(variant)
+    state.context_forms[variant] = ContextForm(base, r, c * (1 - r) + shift)
 
 
 def heal_texture(state: BuildState) -> None:
@@ -55,3 +58,40 @@ def heal_texture(state: BuildState) -> None:
         m = VARIANT.match(variant)
         if m and m.group(1) in state.glyphs:
             _heal(state, m.group(1), variant)
+
+
+def draw_context_strokes(
+    state: BuildState, name: str, strokes: list[Stroke], dx: float, form: ContextForm
+) -> None:
+    """Transform skeletons before sweeping, preserving the nib; e.g. ``draw_context_strokes(s, n, strokes, dx, form)``."""
+    placed = [
+        [(form.scale * (x + dx) + form.shift, y) for x, y in pen.slant(st)]
+        for st in strokes
+    ]
+    shape = unary_union([pen.sweep(st, *state.nib) for st in placed])
+    state.writer.put(name, shape)
+    state.replaced.append(name)
+    state.context_forms[name] = form
+
+
+def heal_composites(state: BuildState) -> None:
+    """Rebuild accented healing forms from Talha recipes; e.g. ``heal_composites(state)``."""
+    for name in state.font.getGlyphOrder():
+        match = VARIANT.fullmatch(name)
+        if not match or match[1] not in state.compositions:
+            continue
+        recipe = state.compositions[match[1]]
+        source = _composition_context(state, recipe.base, match[2])
+        if source is None:
+            continue
+        strokes = composition_strokes(state, recipe.base, list(recipe.marks))
+        form = ContextForm(match[1], source.scale, source.shift)
+        draw_context_strokes(state, name, strokes, state.placed[recipe.base], form)
+
+
+def _composition_context(state: BuildState, base: str, side: str) -> ContextForm | None:
+    # Radon has no uni0237.left/right/both. Accented j still needs the same
+    # contextual placement as j, with a genuinely dotless pen recipe.
+    fallback = {"uni0237": "j", "dotlessi": "i"}.get(base, base)
+    primary = state.context_forms.get(f"{base}.{side}")
+    return primary or state.context_forms.get(f"{fallback}.{side}")

@@ -1,0 +1,52 @@
+[
+  {
+    "face": "TalhaMono-Bold.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-BoldItalic.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-Italic.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMono-Regular.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoText-Italic.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoText-Regular.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Bold.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-BoldItalic.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Italic.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  },
+  {
+    "face": "TalhaMonoWide-Regular.otf",
+    "comparisons": 44760,
+    "result": "PASS"
+  }
+]

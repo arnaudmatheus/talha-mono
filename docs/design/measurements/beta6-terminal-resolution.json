@@ -1,0 +1,165 @@
+{
+  "ghostty": "Ghostty 1.3.1-arch2\n\nVersion\n  - version: 1.3.1-arch2\n  - channel: tip\nBuild Config\n  - Zig version   : 0.15.2\n  - build mode    : .ReleaseFast\n  - app runtime   : .gtk\n  - font engine   : .fontconfig_freetype\n  - renderer      : renderer.generic.Renderer(renderer.OpenGL)\n  - libxev        : epoll\n  - kernel version: 7.2.3-arch1-3\n  - desktop env   : other\n  - GTK version   :\n    build         : 4.22.2\n    runtime       : 4.22.4\n  - libadwaita    : enabled\n    build         : 1.9.0\n    runtime       : 1.9.3\n  - libX11        : enabled\n  - libwayland    : enabled\n",
+  "faces": [
+    {
+      "font": "fonts/TalhaMono-Bold.otf",
+      "family": "Talha Mono",
+      "style": "Bold",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMono-Bold.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMono-BoldItalic.otf",
+      "family": "Talha Mono",
+      "style": "Bold Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMono-BoldItalic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMono-Italic.otf",
+      "family": "Talha Mono",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMono-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMono-Regular.otf",
+      "family": "Talha Mono",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMono-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoNF-Bold.otf",
+      "family": "Talha Mono NF",
+      "style": "Bold",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoNF-Bold.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoNF-BoldItalic.otf",
+      "family": "Talha Mono NF",
+      "style": "Bold Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoNF-BoldItalic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoNF-Italic.otf",
+      "family": "Talha Mono NF",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoNF-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoNF-Regular.otf",
+      "family": "Talha Mono NF",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoNF-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoText-Italic.otf",
+      "family": "Talha Mono Text",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoText-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Text\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Text\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Text\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Text\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Text\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoText-Regular.otf",
+      "family": "Talha Mono Text",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoText-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Text\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Text\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Text\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Text\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Text\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoTextNF-Italic.otf",
+      "family": "Talha Mono Text NF",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoTextNF-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoTextNF-Regular.otf",
+      "family": "Talha Mono Text NF",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoTextNF-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Text NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWide-Bold.otf",
+      "family": "Talha Mono Wide",
+      "style": "Bold",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWide-Bold.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWide-BoldItalic.otf",
+      "family": "Talha Mono Wide",
+      "style": "Bold Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWide-BoldItalic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWide-Italic.otf",
+      "family": "Talha Mono Wide",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWide-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWide-Regular.otf",
+      "family": "Talha Mono Wide",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWide-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide\u201d.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWideNF-Bold.otf",
+      "family": "Talha Mono Wide NF",
+      "style": "Bold",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWideNF-Bold.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWideNF-BoldItalic.otf",
+      "family": "Talha Mono Wide NF",
+      "style": "Bold Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWideNF-BoldItalic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWideNF-Italic.otf",
+      "family": "Talha Mono Wide NF",
+      "style": "Italic",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWideNF-Italic.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    },
+    {
+      "font": "fonts/TalhaMonoWideNF-Regular.otf",
+      "family": "Talha Mono Wide NF",
+      "style": "Regular",
+      "resolved_file": "/home/arnaud/Projects/jandi-mono/build/reading-review/fonts/TalhaMonoWideNF-Regular.otf",
+      "ghostty_output": "U+74 \u00ab t \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+6C \u00ab l \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+31 \u00ab 1 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+129 \u00ab \u0129 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+301 \u00ab \u0301 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+F120 \u00ab \uf120 \u00bb found in face \u201cTalha Mono Wide NF\u201d.\nU+E0B0 \u00ab \ue0b0 \u00bb is handled by Ghostty's internal sprites.\n",
+      "result": "PASS"
+    }
+  ]
+}

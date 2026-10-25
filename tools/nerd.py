@@ -9,6 +9,7 @@ scaled for this exact cell (2000 UPM, 1240 advance), so the icons are copied
 from it: every codepoint it has and Talha Mono lacks. Each icon is redrawn
 through a pen, so no CFF subroutine of the source font is carried over."""
 
+import re
 import sys
 from fontTools.ttLib import TTFont
 from fontTools.pens.t2CharStringPen import T2CharStringPen
@@ -39,20 +40,35 @@ def _copy_icon(
     font["hmtx"][name] = (width, round(icons["hmtx"][source][1] * ratio))
 
 
+def _icon_glyph_name(source: str, occupied: set[str]) -> str:
+    """A unique PostScript-safe name; e.g. ``_icon_glyph_name('cod-add', set())``."""
+    stem = re.sub(r"[^A-Za-z0-9_.]", "_", source)
+    if not stem or stem[0].isdigit() or stem.startswith("."):
+        stem = "nf_" + stem
+    name, serial = stem[:63], 0
+    while name in occupied:
+        serial += 1
+        suffix = ".nf" if serial == 1 else f".nf{serial}"
+        name = stem[: 63 - len(suffix)] + suffix
+    return name
+
+
 def _copy_missing_icons(font: TTFont, icons: TTFont) -> dict[str, list[int]]:
     cmap = font.getBestCmap()
     glyphs = icons.getGlyphSet()
     have = set(font.getGlyphOrder())
     added: dict[str, list[int]] = {}
+    copied: dict[str, str] = {}
     for cp, gname in sorted(icons.getBestCmap().items()):
         if cp in cmap:
             continue
-        name = gname if gname not in have else f"{gname}.nf"
-        if name not in added and name not in have:
+        if gname not in copied:
+            name = _icon_glyph_name(gname, have)
             _copy_icon(font, icons, gname, name, glyphs)
             have.add(name)
+            copied[gname] = name
             added[name] = []
-        added[name].append(cp)
+        added[copied[gname]].append(cp)
     order = font.getGlyphOrder()
     font["CFF "].cff.topDictIndex[0].charset = order
     font.setGlyphOrder(order)

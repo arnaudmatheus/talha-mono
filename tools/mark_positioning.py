@@ -7,7 +7,7 @@ from fontTools.feaLib.builder import addOpenTypeFeaturesFromString
 import pen
 from anchors import MARK_CLASSES, anchors, final
 from build_state import BuildState
-from glyph_table import LETTER_OF
+from marks import MARKS
 from pen_types import Point
 
 # Stacking (ǘ ǚ, and any second mark): the next mark's lowest ink sits
@@ -34,10 +34,16 @@ def _mark_classes(state: BuildState) -> tuple[MarkClasses, list[str]]:
 
 
 def _pos_base(gname: str, a: dict[str, Point], dx: float, classes: MarkClasses) -> str:
+    return _pos_final_base(
+        gname, {kind: final(pt, dx) for kind, pt in a.items()}, classes
+    )
+
+
+def _pos_final_base(gname: str, a: dict[str, Point], classes: MarkClasses) -> str:
     parts = []
     for key, cls in MARK_CLASSES:
         if cls in classes:
-            x, y = final(a[key], dx)
+            x, y = a[key]
             parts.append(f"<anchor {round(x)} {round(y)}> mark @{cls}")
     return f"  pos base {gname} {' '.join(parts)};"
 
@@ -56,8 +62,11 @@ def _stack_y(ink_top: float, depth: float) -> float:
 
 def _letter_bases(state: BuildState, classes: MarkClasses) -> list[str]:
     bases = []
+    letters = {
+        name for cp, name in state.font.getBestCmap().items() if chr(cp).isalpha()
+    }
     for gname, dx in state.placed.items():
-        if gname not in LETTER_OF and gname not in DOTLESS:
+        if gname not in letters and gname not in DOTLESS:
             continue
         bases.append(_pos_base(gname, anchors(state.glyphs[gname], gname), dx, classes))
     return bases
@@ -68,10 +77,34 @@ def _composite_bases(
 ) -> list[str]:
     """Precomposed letters as bases: the next mark goes above their ink."""
     bases = []
-    for gname, base in state.composite_bases.items():
-        a = anchors(state.glyphs[base], base)
-        a["above"] = (a["above"][0], _stack_y(state.writer.ink[gname][3], depth))
-        bases.append(_pos_base(gname, a, state.placed[base], classes))
+    for gname in state.compositions:
+        bases.append(
+            _pos_final_base(gname, attachment_points(state, gname, depth), classes)
+        )
+    return bases
+
+
+def attachment_points(state: BuildState, name: str, depth: float) -> dict[str, Point]:
+    """Final anchors for a default or precomposed base; e.g. ``attachment_points(s, 'itilde', depth)``."""
+    recipe = state.compositions.get(name)
+    base = recipe.base if recipe else name
+    points = anchors(state.glyphs[base], base)
+    if recipe and any(MARKS[cp][0] == "above" for cp in recipe.marks):
+        points["above"] = (
+            points["above"][0],
+            _stack_y(state.writer.ink[name][3], depth),
+        )
+    return {kind: final(point, state.placed[base]) for kind, point in points.items()}
+
+
+def _context_bases(state: BuildState, classes: MarkClasses, depth: float) -> list[str]:
+    bases = []
+    for name, form in state.context_forms.items():
+        points = attachment_points(state, form.base, depth)
+        points = {
+            kind: (x * form.scale + form.shift, y) for kind, (x, y) in points.items()
+        }
+        bases.append(_pos_final_base(name, points, classes))
     return bases
 
 
@@ -95,14 +128,17 @@ def set_gdef_classes(state: BuildState) -> None:
     gdef = state.font["GDEF"].table.GlyphClassDef.classDefs
     for gname in state.mark_anchors:
         gdef[gname] = GDEF_MARK  # Radon had these as "component" (4)
-    for gname in list(state.placed) + list(state.composite_bases):
-        gdef.setdefault(gname, GDEF_BASE)
+    for gname in (
+        list(state.placed) + list(state.compositions) + list(state.context_forms)
+    ):
+        gdef[gname] = GDEF_BASE
 
 
 def position_marks(state: BuildState) -> None:
     classes, lines = _mark_classes(state)
     depth = _stack_depth(state)
     bases = _letter_bases(state, classes) + _composite_bases(state, classes, depth)
+    bases += _context_bases(state, classes, depth)
     mkmk = _mark_on_mark(state, depth)
     fea = (
         "\n".join(lines)

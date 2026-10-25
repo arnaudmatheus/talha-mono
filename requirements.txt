@@ -3,3 +3,5 @@ shapely>=2.0
 numpy>=1.26
 pillow>=10
 afdko>=4.0        # otfautohint (hinting); optional: without it the fonts build unhinted
+uharfbuzz>=0.39  # complete-run shaping and contextual-feature verification
+freetype-py>=2.3,<2.4  # native-size whole-word raster measurements

@@ -1,0 +1,107 @@
+{
+  "crop_format": "[left, top, right, bottom] in local-image pixels",
+  "sources": [
+    {
+      "file": "figueiredo-plate7.jpg",
+      "work": "Manuel de Andrade de Figueiredo, Nova Escola (1722), plate 7",
+      "credit": "Biblioteca Nacional de Portugal, RES-3075-A, digitised image 91",
+      "source_url": "https://purl.pt/107",
+      "original_url": "https://permalinkbnd.bnportugal.gov.pt/i/?IIIF=/3b/2f/b1/dd/3b2fb1dd-18e6-4ecc-9be2-787b02860c6f/iiif/res-3075-a_0000_est-156_t24-C-R0150_000091.tif/full/1200,/0/default.jpg",
+      "status": "Public domain; BNP record: https://creativecommons.org/publicdomain/mark/1.0/",
+      "treatment": "Downloaded at 1200 pixels wide; JPEG recompressed at quality 88. Colour unchanged.",
+      "atlas_crops": {
+        "02": [
+          505,
+          180,
+          805,
+          415
+        ],
+        "03": [
+          125,
+          500,
+          425,
+          775
+        ],
+        "swash-comparison": [
+          130,
+          1050,
+          900,
+          1400
+        ]
+      },
+      "sha256": "6a6b82b4168749b1b0ee69acbe567b3f675e88a57d123d2b96d4c87c0c558f66"
+    },
+    {
+      "file": "figueiredo-plate9.jpg",
+      "work": "Manuel de Andrade de Figueiredo, Nova Escola (1722), plate 9",
+      "credit": "Biblioteca Nacional de Portugal, RES-3075-A, digitised image 95",
+      "source_url": "https://purl.pt/107",
+      "original_url": "https://permalinkbnd.bnportugal.gov.pt/i/?IIIF=/3b/2f/b1/dd/3b2fb1dd-18e6-4ecc-9be2-787b02860c6f/iiif/res-3075-a_0000_est-156_t24-C-R0150_000095.tif/full/1200,/0/default.jpg",
+      "status": "Public domain; BNP record: https://creativecommons.org/publicdomain/mark/1.0/",
+      "treatment": "Downloaded at 1200 pixels wide; JPEG recompressed at quality 88. Colour unchanged.",
+      "atlas_crops": {
+        "01": [
+          430,
+          815,
+          1130,
+          1015
+        ]
+      },
+      "sha256": "7b4a53e5dd86db8c3743cfdee3ed28e34792ddafdc95310b074cbff8cee5e140"
+    },
+    {
+      "file": "aleijadinho-portal.jpg",
+      "work": "Archival print showing the portal of Sao Francisco de Assis, Ouro Preto",
+      "credit": "Public domain / Museu Paulista (USP) Collection. Reproduction: Jose Rosael/Helio Nobre/Museu Paulista da USP.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Igreja_de_S%C3%A3o_Francisco_de_Assiz_%28P%C3%B3rtico_e_Escultura_do_Aleijadinho%29_Ouro_Preto_-_Minas_Gerais%29.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Igreja_de_S%C3%A3o_Francisco_de_Assiz_%28P%C3%B3rtico_e_Escultura_do_Aleijadinho%29_Ouro_Preto_-_Minas_Gerais%29.jpg",
+      "status": "Public domain, as marked on the Commons source page",
+      "treatment": "Resized from 2832 pixels to 1200 pixels wide, JPEG quality 88. Colour unchanged.",
+      "atlas_crops": {
+        "04": [
+          350,
+          600,
+          790,
+          900
+        ]
+      },
+      "sha256": "5da7dab4cf3e42a0379c1773579aaa3c25c83e244acb83d7e5a04efa36112bfd"
+    },
+    {
+      "file": "ataide-ceiling.jpg",
+      "work": "Manuel da Costa Ataide, ceiling of Sao Francisco de Assis, Ouro Preto",
+      "credit": "Tetraktys, 2005",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ataide-teto.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Ataide-teto.jpg",
+      "status": "Public domain reproduction, as marked on the Commons source page",
+      "treatment": "Original downloaded unchanged. Embedded atlas crop recompressed at JPEG quality 90.",
+      "atlas_crops": {
+        "05": [
+          100,
+          25,
+          440,
+          225
+        ]
+      },
+      "sha256": "d03ca0677d2f7711abf39111aa3515111f6d79c86b03a10837549cb7d6731368"
+    },
+    {
+      "file": "habacuc-scroll.jpg",
+      "work": "Aleijadinho, Habacuc, Sanctuary of Bom Jesus de Matosinhos, Congonhas",
+      "credit": "Luis Rizo, 7 July 2008. Commons version: watermark removed by Tamba52, 30 June 2010.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:HabacucProfeta.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/HabacucProfeta.jpg",
+      "status": "Photographer dedicated the photograph to the public domain",
+      "treatment": "Original Commons version downloaded unchanged. Embedded atlas crop recompressed at JPEG quality 90.",
+      "atlas_crops": {
+        "06": [
+          360,
+          760,
+          800,
+          1430
+        ]
+      },
+      "sha256": "ec81b60d6153c14fdb6e3a2e9dd5ffe35760dda1ee4bf72e8602ce8fe257bfc5"
+    }
+  ]
+}

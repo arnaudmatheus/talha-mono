@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-23",
+  "scope": "Read-only research; Regular only; independent-chunk shaping is not a Ghostty rendering test.",
+  "font": "build/TalhaMono-Regular.otf",
+  "font_sha256": "ddbee597957684f3f8bedef312c2bdeca50d584f159dfef0f0efc230d845ef06",
+  "fonttools": "4.67.0",
+  "source_tables": {
+    "font_bytes": 1801064,
+    "GSUB": 881724,
+    "CFF": 861758,
+    "GPOS": 18752
+  },
+  "serialization_trials": [
+    {
+      "harfbuzz_repacker": true,
+      "font_bytes": 1801064,
+      "gsub_bytes": 881724,
+      "gpos_bytes": 18752,
+      "cff_unchanged": true
+    },
+    {
+      "harfbuzz_repacker": false,
+      "font_bytes": 1904200,
+      "gsub_bytes": 984860,
+      "gpos_bytes": 18752,
+      "cff_unchanged": true
+    }
+  ],
+  "independent_chunk_probes": [
+    {
+      "text": "tipiti",
+      "cut": 2,
+      "features": {
+        "calt": 1,
+        "ss11": 1
+      },
+      "whole": [
+        "t",
+        "i.ctxL",
+        "p",
+        "i.ctxR",
+        "t",
+        "i"
+      ],
+      "independent_chunks": [
+        "t",
+        "i",
+        "p",
+        "i.ctxR",
+        "t",
+        "i"
+      ],
+      "whole_advance": 6960,
+      "chunk_advance": 6960
+    },
+    {
+      "text": "antigo",
+      "cut": 2,
+      "features": {
+        "calt": 1,
+        "ss11": 1
+      },
+      "whole": [
+        "a",
+        "n.ctxR",
+        "t.ctxR",
+        "i.ctxL",
+        "g.ctxL",
+        "o"
+      ],
+      "independent_chunks": [
+        "a",
+        "n",
+        "t",
+        "i.ctxL",
+        "g.ctxL",
+        "o"
+      ],
+      "whole_advance": 6960,
+      "chunk_advance": 6960
+    },
+    {
+      "text": "filter",
+      "cut": 3,
+      "features": {
+        "calt": 1,
+        "ss11": 1
+      },
+      "whole": [
+        "f",
+        "i",
+        "l",
+        "t.ctxL",
+        "e",
+        "r"
+      ],
+      "independent_chunks": [
+        "f",
+        "i",
+        "l",
+        "t",
+        "e",
+        "r"
+      ],
+      "whole_advance": 6960,
+      "chunk_advance": 6960
+    }
+  ],
+  "current_mark_audit_feature_pairs": [
+    {
+      "calt": 0,
+      "ss11": 0
+    },
+    {
+      "calt": 1,
+      "ss11": 1
+    }
+  ],
+  "recommended_additional_pairs": [
+    {
+      "calt": 1,
+      "ss11": 0
+    },
+    {
+      "calt": 0,
+      "ss11": 1
+    }
+  ]
+}

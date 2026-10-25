@@ -11,6 +11,7 @@ from typing import NamedTuple
 import caps
 import letters
 from pen_types import StrokesFn
+from drawing_catalog import drawing_catalog
 
 # x-height +5% (roadmap B2: Legge & Bigelow's critical print size). Only the
 # band from baseline to x-height stretches; ascenders keep their top, so the
@@ -48,27 +49,30 @@ def band_top(kind: str) -> float:
     return XH_NEW if kind == "lower" else CAP_TOP
 
 
-def _drawings() -> dict[str, Letter]:
-    table = {c: Letter(letters.LETTERS[c], "lower") for c in LOWERCASE}
-    table["dotlessi"] = Letter(letters.LETTERS["dotlessi"], "lower")
-    table["uni0237"] = Letter(letters.LETTERS["dotlessj"], "lower")
+def _drawings(italic: bool, refined_stems: bool) -> dict[str, Letter]:
+    catalog = drawing_catalog(italic, refined_stems)
+    table = {c: Letter(catalog.lower[c], "lower") for c in LOWERCASE}
+    table["dotlessi"] = Letter(catalog.lower["dotlessi"], "lower")
+    table["uni0237"] = Letter(catalog.lower["dotlessj"], "lower")
     table.update({c: Letter(fn, "cap") for c, fn in caps.CAPS.items()})
-    table.update({n: Letter(fn, "cap") for n, fn in caps.FIGURES.items()})
-    table.update({n: Letter(fn, "lower") for n, fn in caps.EXTRAS_LOWER.items()})
+    table.update({n: Letter(fn, "cap") for n, fn in catalog.figures.items()})
+    table.update({n: Letter(fn, "lower") for n, fn in catalog.extra_lower.items()})
     table.update({n: Letter(fn, "cap") for n, fn in caps.EXTRAS_UPPER.items()})
     return table
 
 
-def glyph_table(in_font: Callable[[str], bool]) -> dict[str, Letter]:
+def glyph_table(
+    in_font: Callable[[str], bool], italic: bool = False, refined_stems: bool = True
+) -> dict[str, Letter]:
     """The redrawn glyphs this font has, lowercase on the taller x-height.
 
-    Call after the Italic's corsiva is merged into letters.LETTERS.
+    Each call resolves style/profile recipes without changing global catalogs.
 
     >>> glyph_table(writer.has)["a"].kind
     'lower'
     """
     table = {
         g: Letter(taller(fn), kind) if kind == "lower" else Letter(fn, kind)
-        for g, (fn, kind) in _drawings().items()
+        for g, (fn, kind) in _drawings(italic, refined_stems).items()
     }
     return {g: letter for g, letter in table.items() if in_font(g)}

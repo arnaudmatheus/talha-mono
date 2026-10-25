@@ -10,8 +10,7 @@ from shapely.ops import unary_union
 import caps
 import pen
 from anchors import anchors, final, shifted
-from build_state import BuildState
-from glyph_table import LETTER_OF
+from build_state import BuildState, Composition
 from marks import CARON_APOSTROPHE, MARKS
 from pen_types import Point, Stroke
 
@@ -49,9 +48,18 @@ def _mark_strokes(state: BuildState, gname: str, marks_cps: list[int]) -> list[S
 def compose(state: BuildState, gname: str, marks_cps: list[int]) -> BaseGeometry:
     """A precomposed letter: the base's strokes plus its marks, one sweep."""
     w, t = state.nib
-    strokes = state.glyphs[gname].strokes() + _mark_strokes(state, gname, marks_cps)
+    strokes = composition_strokes(state, gname, marks_cps)
     shape, _ = pen.place(strokes, w, t, dx=state.placed[gname])
     return shape
+
+
+def composition_strokes(
+    state: BuildState, gname: str, marks_cps: list[int]
+) -> list[Stroke]:
+    """Share the same pen recipe with healed accents; e.g. ``composition_strokes(s, 'i', [0x328])``."""
+    body = state.glyphs[gname].strokes()
+    marks = _mark_strokes(state, gname, marks_cps)
+    return body + marks
 
 
 def _base_for(decomposed: str) -> str:
@@ -63,7 +71,10 @@ def _base_for(decomposed: str) -> str:
 
 
 def _decomposes_to_marks(gname: str, d: str, state: BuildState) -> bool:
-    if len(d) < 2 or d[0] not in LETTER_OF or gname in state.glyphs:
+    if len(d) < 2 or gname in state.glyphs:
+        return False
+    base = state.font.getBestCmap().get(ord(d[0]))
+    if base not in state.glyphs:
         return False
     return all(ord(m) in MARKS for m in d[1:])
 
@@ -75,13 +86,14 @@ def place_precomposed(state: BuildState) -> None:
         if not _decomposes_to_marks(gname, d, state):
             continue
         base = _base_for(d)
+        if base not in state.glyphs:
+            base = state.font.getBestCmap()[ord(d[0])]
         state.writer.put(gname, compose(state, base, [ord(m) for m in d[1:]]))
         state.replaced.append(gname)
         # The precomposed letter is a mark base too: HarfBuzz recomposes u + ¨
         # into ü before positioning, and the acute of ǘ needs an anchor above
         # the dieresis.
-        if any(MARKS[ord(m)][0] == "above" for m in d[1:]):
-            state.composite_bases[gname] = base
+        state.compositions[gname] = Composition(base, tuple(ord(m) for m in d[1:]))
 
 
 def _mark_shape(state: BuildState, strokes: list[Stroke], dx: float) -> BaseGeometry:

@@ -25,6 +25,69 @@ OFL, it does not use the Reserved Font Names of the original ("Monaspace",
 
 ChangeLog
 ---------
+1.0.0-beta.7 (2026-10-24): t, l and 1 refined; contextual spacing
+The first published release since 1.0.0-beta.3. It includes the local
+beta.4, beta.5 and beta.6 candidates listed below.
+- t, l and 1 redrawn slightly: the t bar sits 20 units lower, the l tail
+  reaches up to 20 units further right at the baseline, and the 1 flag is
+  10 units longer. Accented forms, lslash, texture-healing and SS11 forms,
+  hints and the NF copies follow. Chosen by the user on 2026-10-24; the
+  recorded blind ratings so far compare spacing only. The cv10 l/lslash,
+  cv02 one and the fraction figures keep their upstream drawings.
+- Optional ss11, Contextual spacing (beta.5, guarded in beta.6), now with a
+  pruned lookup: Regular is 18% smaller and its GSUB 36% smaller, with the
+  same shaping in 447,600 compared runs. Off by default; advances never change.
+- Accent and mark-attachment fixes from beta.5: stacked and below marks,
+  NFC/NFD equivalence, accented healing forms drawn from Talha's own recipes.
+- From beta.4: balanced roman i, letter-specific swsh A/P/R, scalloped
+  leaves and folded ribbon ends, and Nerd Font icon names made PostScript-safe.
+- The legibility gate against beta.3 passes in all ten styles with no waiver;
+  the most confusable pair improves in every style. Contextual checks pass in
+  all 20 faces. See docs/design/beta7.md.
+
+1.0.0-beta.6 (2026-10-23): local spacing refinement
+- Guard optional ss11 shifts with shared-height contour gaps. Keep fixed
+  cells, 40-unit ink shifts, and all existing letterform drawings.
+- Group accents with their base bodies; compile guards as class-based
+  contextual extension subtables, preserving existing OpenType features.
+- Add all-style and separate-corpus comparisons, feature-off pixel checks,
+  advance/overlap checks and a three-column native Pango proof.
+- See docs/design/beta6.md for results, shaping cost and remaining tradeoffs.
+
+1.0.0-beta.5 (2026-10-22): local contextual-feature candidate
+- Regenerate accented healing forms from Talha's own pen recipes, including
+  dotless j and extended Latin precompositions. Attach combining marks to
+  every supported default and contextual base, with GDEF base classes and
+  transformed GPOS anchors. The beta.3/beta.4 stacked-mark failures are fixed.
+- Add opt-in ss11, Contextual spacing: position the middle letter using both
+  neighbors' optical body widths. All advances remain fixed. Existing GSUB,
+  texture healing and ligatures are preserved; ss11 is independent of liga.
+- Whole-run HarfBuzz/FreeType measurements at native reading sizes, 20/40/60
+  unit spacing previews, Pango proofs and anonymous personal reading samples.
+- Add a contextual shaping/advance audit to CI. Rebuild all 20 faces; default
+  legibility and full-family FontBakery checks pass. See docs/design/beta5.md.
+
+1.0.0-beta.4 (2026-10-21): local candidate
+- Balanced roman i entries and exits, inherited by dotless i, accented forms,
+  the Turkish local form and texture-healing alternates. Character advances
+  stay fixed. The corsiva keeps its distinct i.
+- Letter-specific swsh capitals A, P and R: a crossbar loop, a descending
+  stem flourish, and a running leg. Three studies each; the middle treatment
+  is selected in the source build.
+- A scalloped scroll leaf with ribs, in eight directional/turned forms,
+  and folded ribbon ends with a rear swallowtail and crease. Existing
+  Unicode mappings and display feature tags are retained.
+- Source atlas, comparison sheets, 48/96/192 px display proofs, native
+  12/15/20 px reading proofs, and composed title/chapter pages in docs/design/.
+- Normalize Nerd Font icon names to PostScript-safe names, handling collisions
+  and aliases without changing Unicode coverage, icon outlines or advances.
+- The regression gate now checks all ten styles independently, including
+  Bold Italic and the Wide/Text styles previously covered only in comparisons.
+- Local builds can use HINT_JOBS=1 when sandbox restrictions prevent the
+  autohinter's parallel workers. The default remains two workers per font.
+- All 20 faces are rebuilt under build/. The checked-in fonts/otf/ remain
+  the beta.3 baseline. Candidate notes and validation: docs/design/beta4.md.
+
 1.0.0-beta.3 (2026-10-19): renamed Talha Mono
 - The font was Jandí Mono until 1.0.0-beta.2. It is not affiliated with
   jandi-colors (whose palette and name the Jandí theme borrows) nor with

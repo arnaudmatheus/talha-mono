@@ -19,17 +19,16 @@ import sys
 
 from fontTools.ttLib import TTFont
 
-import corsiva
-import letters
 import pen
 from accents import place_case_marks, place_marks, place_precomposed
 from build_options import BuildOptions, configure_pen, parse_args
 from build_state import BuildState
 from cell import rescale_cell
+from context_spacing import add_context_spacing
 from glyph_table import glyph_table
 from glyph_writer import GlyphWriter
 from gsub_features import merge_into_liga, stylistic_set_lookups
-from healing import heal_texture
+from healing import heal_composites, heal_texture
 from mark_positioning import position_marks, set_gdef_classes
 from naming import name_font
 from place_letters import place_letters
@@ -37,7 +36,7 @@ from place_ornaments import place_ornaments
 from place_symbols import place_symbols
 from zones import set_zones
 
-VERSION = "1.0.0-beta.3"
+VERSION = "1.0.0-beta.7"
 
 
 def start(opts: BuildOptions) -> BuildState:
@@ -46,10 +45,9 @@ def start(opts: BuildOptions) -> BuildState:
     font = TTFont(opts.src)
     rescale_cell(font, opts.src, opts.cell)
     pen.ADV = opts.cell
-    if opts.italic:
-        letters.LETTERS.update(corsiva.CORSIVA)
     writer = GlyphWriter(font, opts.cell)
-    return BuildState(opts, font, writer, glyph_table(writer.has))
+    drawings = glyph_table(writer.has, opts.italic)
+    return BuildState(opts, font, writer, drawings)
 
 
 def draw(state: BuildState) -> None:
@@ -60,8 +58,10 @@ def draw(state: BuildState) -> None:
     place_ornaments(state)
     heal_texture(state)
     place_precomposed(state)
+    heal_composites(state)
     place_marks(state)
     place_case_marks(state)
+    add_context_spacing(state)
     position_marks(state)
     # Ligatures on by default (roadmap E2, decision 2026-10-16): Radon keeps
     # most of them behind ss01-ss10; they move into liga, so they need no

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Talha Mono · Reading room</title>
+  <link rel="stylesheet" href="review.css">
+  <script type="module" src="review.mjs"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="monogram" aria-hidden="true">T</span>
+      <div><p class="eyebrow">TALHA MONO / READING ROOM</p>
+        <h1>Read it your way.</h1>
+        <p class="intro">Compare letterforms or spacing at your usual reading size. Edit either sample; both stay in sync.</p>
+      </div>
+    </header>
+    <section class="controls" aria-label="Reading settings">
+      <label>Face<select id="face" disabled></select></label>
+      <label>Compare<select id="comparison-mode"><option value="spacing">Spacing</option><option value="letterforms">Letterforms</option></select></label>
+      <label>Drawings<select id="drawing"><option value="baseline">Baseline</option><option value="candidate">Stem candidate</option></select></label>
+      <label>Shared spacing<select id="fixed-spacing"><option value="0">Ordinary</option><option value="1">SS11 guarded</option></select></label>
+      <label>Size<select id="size"><option>12</option><option selected>15</option><option>20</option><option>24</option></select></label>
+      <label>Ground<select id="ground"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>Sample<select id="sample"><option value="prose">Prose</option><option value="code">Code</option><option value="accents">Accents</option><option value="columns">Columns &amp; icons</option></select></label>
+      <button id="new-comparison" type="button">New A/B order</button>
+    </section>
+    <p id="font-status" role="status" aria-live="polite">Loading candidate faces…</p>
+    <p id="comparison-note">Spacing: the same drawings with SS11 off/on.</p>
+    <section class="comparison" aria-label="Anonymous reading samples">
+      <article><div class="sample-heading"><h2>Sample A</h2><span id="assignment-a">Assignment hidden</span></div>
+        <textarea id="text-a" aria-label="Sample A text" spellcheck="false" autocapitalize="off" wrap="off" disabled></textarea>
+      </article>
+      <article><div class="sample-heading"><h2>Sample B</h2><span id="assignment-b">Assignment hidden</span></div>
+        <textarea id="text-b" aria-label="Sample B text" spellcheck="false" autocapitalize="off" wrap="off" disabled></textarea>
+      </article>
+    </section>
+    <form id="observation">
+      <fieldset id="preference" disabled><legend>Which feels clearer?</legend>
+        <label><input type="radio" name="preference" value="A" required> Sample A</label>
+        <label><input type="radio" name="preference" value="B"> Sample B</label>
+        <label><input type="radio" name="preference" value="same"> No preference</label>
+        <label><input type="radio" name="preference" value="unsure"> Unsure</label>
+      </fieldset>
+      <label class="notes-label">Notes<textarea id="notes" rows="2" placeholder="Words, accents, or shapes that caught your attention"></textarea></label>
+      <div class="actions"><button id="save" type="submit" disabled>Save observation</button>
+        <button id="reveal" type="button" disabled>Reveal assignment</button>
+        <button id="export" type="button" disabled>Export observations</button>
+        <span id="saved-status" role="status" aria-live="polite">No observations yet</span>
+      </div>
+    </form>
+    <section class="journal" aria-label="Saved observations">
+      <h2>Your observations</h2><p id="empty-journal">Try a few faces and sizes, then record what you notice.</p>
+      <div class="table-wrap"><table id="journal-table" hidden><thead><tr><th>Face</th><th>Compare</th><th>Size</th><th>Ground</th><th>Preference</th><th>Before reveal?</th></tr></thead><tbody id="journal"></tbody></table></div>
+    </section>
+    <footer><p>Compare at 100% browser zoom. Observations stay in this page until exported; reloading clears them.</p>
+      <p>This is a clarity and preference check. Repeating one passage cannot establish a reading-speed benefit. Native editor and terminal rendering need separate review.</p>
+    </footer>
+  </main>
+</body>
+</html>

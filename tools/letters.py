@@ -125,12 +125,16 @@ def strokes_f() -> list[Stroke]:
 
 
 def strokes_dotlessi() -> list[Stroke]:
+    # Balanced entry/exit expansion (beta.4): the old 400..760 skeleton left
+    # holes in ti/li/ri/fi. Extending only the foot made i/l much more alike;
+    # extending both ends to 320..840 keeps every measured pair within 0.01
+    # across the roman weights and cells, and separates i/j more clearly.
     return [
         path(
-            ("M", (400, 865)),
+            ("M", (320, 865)),
             ("L", (560, T)),
             ("L", (560, 170)),
-            ("C", (560, 80), (630, 40), (760, 100)),
+            ("C", (560, 80), (630, 40), (840, 100)),
         )
     ]
 

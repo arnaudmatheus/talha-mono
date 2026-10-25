@@ -327,6 +327,109 @@ descent.
 
 ## Next
 
+### Beta.7 released (2026-10-24)
+
+[Implementation and evidence](docs/design/beta7.md): the refined `t/l/1`
+stems are the default in all 20 faces, with the compact SS11 lookup, chosen
+by the user. No blind letterform ratings were recorded. SS11 stays opt-in;
+the user's two blind spacing ratings both preferred SS11 on, so a fuller
+spacing review should decide whether it becomes the default.
+
+Next: check real editor and terminal rendering (caret, selection, tabs,
+fallback, SS11 run boundaries), and run more blind spacing comparisons.
+
+### Research after the beta.6 studies (2026-10-23)
+
+[Primary-source findings and local probes](docs/design/next-steps-after-beta6.md)
+prioritize a complete experimental stem build, four independent calt/SS11
+combinations, live renderer editing checks, lookup profiling, and font-pair
+reading comparisons. Integration must avoid double vertical mapping in the
+study recipes and preserve the `lslash` dependency. Chunk-shaping probes show
+why cursor/run-boundary tests matter. The current file already matches forced
+HarfBuzz repacking; size work belongs in the lookup design.
+
+### Reading review and cross-style stems (2026-10-23)
+
+[Review tools and findings](docs/design/reading-review.md): a portable local
+reviewer includes all 20 beta.6 faces, editable A/B samples and JSON preference
+logs. Ghostty/fontconfig resolution passes for all 20 private candidate copies.
+Browser interaction and native editor pixels still need direct evaluation.
+
+The original 20-unit `t/l/1` study fails Text Regular `1/I` by 0.011 at 15 px.
+Reducing the `1` flag to 10 units while keeping `t/l` at 20 passes the isolated
+pair guard in all ten styles, with exact zero-strength controls. No defaults
+are changed: next propagate the chosen recipe through accents, healing and
+SS11 forms, then repeat whole-run measurements and full font QA before adoption.
+
+### Beta.6 spacing refinement (2026-10-23)
+
+[Contour guards and all-style review](docs/design/beta6.md) refine SS11 while
+retaining 40-unit shifts and fixed advances. Shared-height gap checks suppress
+wrong-direction and marginal moves. Original and separate review sets cover
+1,440 native-size cases; fewer score worse than ordinary spacing. Remaining
+word-level tradeoffs and extra shaping cost are documented. SS11 stays opt-in
+pending personal and actual-editor evaluation. The `t/l/1` letterform study
+remains separate from the default build.
+
+### Beta.5 contextual features (2026-10-22)
+
+[Implemented and validated](docs/design/beta5.md): accented healing forms
+now use Talha recipes, and all supported default/contextual forms receive
+attachment anchors and GDEF base classes. The dotless-j fallback and
+below-mark precompositions are covered. A real-font contextual audit now runs
+in CI and passes in all 20 rebuilt faces.
+
+SS11 adds switchable three-letter spacing using optical body-width classes,
+with fixed cell advances. Native whole-run measurements improve the three
+target words in Regular, Italic, Wide and Text. Some other word/size combinations
+become less even, so the treatment remains opt-in. Strength trials, separate
+letterform comparisons and anonymous reading samples accompany the build.
+The default-text pair gate and full-family QA pass. Next is a personal reading
+comparison before changing the spacing default or promoting a new letterform.
+
+### Research priorities after beta.4 (2026-10-21)
+
+[Primary-source research and local probes](docs/design/next-steps-research.md)
+put contextual accented forms and mark attachment first. The same defects
+reproduce in beta.3 and beta.4: some accented healing variants retain Radon's
+outlines, and substituted bases lack mark anchors. Extend shaping checks to
+cover these combinations before adding more contextual forms.
+
+Next: measure complete words at 12/15/20 px; prototype positioning based on
+both neighbors while preserving advances; compare coordinated `t/r/f/l/1`
+features; finish with a blinded personal reading comparison. Commit Mono's
+three-letter approach is an experiment to test, not a proven fix for Talha's
+narrow runs. More display ornament follows these text priorities.
+
+### Beta.4 reading candidate (2026-10-21)
+
+The [candidate review](docs/design/beta4.md) combines the display pilot below
+with balanced roman `i` entries and exits. Dotted/dotless, accented, Turkish
+and healing forms share the change. The corsiva retains its own skeleton.
+The smaller `i/j` similarity and modest overall spacing improvement pass
+the pair gate; the large gaps in *tipiti* and *Estrada* remain reading work.
+Shorter `r` trials worsened `t/r` and were rejected.
+
+All 20 faces are rebuilt with the existing hint exclusions. QA also found
+and corrected inherited invalid Nerd Font glyph names. Icon Unicode maps,
+outlines and advances are preserved. The gate now checks all ten styles
+individually. Native reading proofs and full QA accompany the local candidate;
+the checked-in beta.3 release fonts remain the baseline.
+
+### Display pilot (2026-10-21)
+
+Fifteen studies: three each for A/P/R swashes, a lobed scroll leaf, and folded
+ribbon ends. The second treatment is selected and integrated into the drawing
+pipeline. Swashes attach at A's crossbar, P's descending stem, and R's leg.
+Eight directional/turned leaves and both ribbon ends use the new motifs.
+
+The [pilot review](docs/design/pilot.md) includes previous/new comparisons,
+48/96/192 px proofs, the updated source atlas, and two display compositions.
+The 20 review faces change only 13 explicitly selected glyphs apiece. All
+other outline programs and hints, advances, GSUB/GPOS and metadata tables
+are unchanged; the legibility gate passes without a waiver. Checked-in release
+fonts remain the baseline; the preview faces live under `build/swash-pilot/`.
+
 ### Code health (after 1.0.0-beta.1)
 
 `CLAUDE.md` is the repository's code standard from 2026-10-18. The code
@@ -572,7 +675,8 @@ width. It is the same weakness the measurements found in F3/D2 (`ti ri li`
 are the loosest pairs, which texture healing can't reach). The likely fix
 is in how `t i r` sit in the cell: their side-bearings, or a measured
 narrow-beside-narrow kerning of the healing classes. It must be checked
-against the three-letter contexts. Not changed yet, at the user's request.
+against the three-letter contexts. Left unchanged at that reading session;
+the 21 October beta.4 candidate above makes a first, limited adjustment.
 
 After 1.0: draw the African-language capitals Radon lacks (`Ɓ Ɗ Ɛ Ɔ Ƈ Ƙ`…),
 so `case_mapping` can be checked too.

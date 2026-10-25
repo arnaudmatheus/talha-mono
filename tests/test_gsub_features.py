@@ -51,3 +51,22 @@ def test_stylistic_sets_merge_into_liga(font):
     liga = gsub_features.liga_lookups(font)
     assert set(sets) <= set(liga)
     assert gsub_features.lookup_outputs(font, liga) == {"f_i", "a.ss01", "b.alt"}
+
+
+def test_class_based_context_records_are_followed_and_relocated_once() -> None:
+    from fontTools.ttLib.tables import otTables as ot
+    from context_feature import _relocate_context_lookups
+
+    record = ot.SubstLookupRecord()
+    record.LookupListIndex, record.SequenceIndex = 7, 0
+    rule = ot.ChainSubClassRule()
+    rule.SubstLookupRecord = [record]
+    rules = ot.ChainSubClassSet()
+    rules.ChainSubClassRule = [rule, rule]
+    subtable = ot.ChainContextSubst()
+    subtable.Format, subtable.ChainSubClassSet = 2, [rules]
+    lookup = ot.Lookup()
+    lookup.LookupType, lookup.LookupFlag, lookup.SubTable = 6, 0, [subtable]
+    assert gsub_features._nested_lookups(subtable) == [7]
+    _relocate_context_lookups([lookup], 5)
+    assert record.LookupListIndex == 12

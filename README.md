@@ -157,6 +157,27 @@ features:
 
 ![Talha Mono specimen](docs/specimen.png)
 
+The [visual source atlas and display studies](docs/design/README.md) show
+historical details beside the drawing skeletons and finished glyphs, followed
+by an Ouro Preto title page and a chapter opening using the carved capitals,
+flourished initials, cartelas and leaves. PNG previews and editable SVGs are
+included; regenerate them with `python tools/design_atlas.py`.
+
+**1.0.0-beta.7** redraws [`t`, `l` and `1`](docs/design/beta7.md) a little:
+the `t` bar sits lower, the `l` tail reaches further right and the `1` flag
+is longer. The change was chosen after a paired reading review. The release
+also brings opt-in **ss11 — Contextual spacing** ([beta.6](docs/design/beta6.md)),
+which shifts a letter's ink by 40 units according to its neighbors' widths
+without changing any advance, with a lookup 36% smaller than in beta.6. Turn it on with
+`font-feature = ss11` in Ghostty or `font-feature-settings: "ss11"` in CSS.
+It also includes the [beta.5](docs/design/beta5.md) accent and
+mark-attachment fixes and the [beta.4](docs/design/beta4.md) balanced `i`.
+
+The [personal reading reviewer](docs/design/reading-review.md) provides
+editable A/B samples, face/size and light/dark controls, and JSON observations.
+The linked review also documents the cross-style `t/l/1` study and native
+font-resolution results.
+
 ## Families
 
 | Family | Use |
@@ -189,6 +210,7 @@ omarchy font set "Talha Mono NF"
 pip install -r requirements.txt
 ./build.sh            # or: ./build.sh /path/to/python
 JOBS=2 ./build.sh     # fewer processes at once on a machine with little memory
+HINT_JOBS=1 ./build.sh # one autohinter worker in restricted sandboxes
 ./tools/specimen.sh   # regenerates docs/specimen.png from build/
 ./tools/hero.sh       # regenerates docs/hero.png from build/
 ```

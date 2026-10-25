@@ -3,6 +3,7 @@
 from fontTools.pens.boundsPen import BoundsPen
 from fontTools.misc.psCharStrings import T2CharString
 from fontTools.pens.t2CharStringPen import T2CharStringPen
+from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 from shapely.geometry import Polygon
 from shapely.geometry.base import BaseGeometry
@@ -90,6 +91,48 @@ class GlyphWriter:
         order = self.font.getGlyphOrder()
         self._top.charset = order
         self.font.setGlyphOrder(order)
+
+    def add_shifted(self, name: str, source: str, shift: float) -> None:
+        """Copy curves into another position in the same cell; e.g. ``writer.add_shifted('i.ctxL', 'i', -40)``."""
+        if self.has(name):
+            raise ValueError(f"{name!r}: expected an unused glyph name")
+        strings = self._top.CharStrings
+        strings.charStringsIndex.append(self._shifted_charstring(source, shift))
+        strings.charStrings[name] = len(strings.charStringsIndex) - 1
+        self.font.getGlyphOrder().append(name)
+        self._remember_shift(name, source, shift)
+
+    def _shifted_charstring(self, source: str, shift: float) -> T2CharString:
+        advance = self.font["hmtx"][source][0]
+        private = self._top.Private
+        width = (
+            None
+            if advance == private.defaultWidthX
+            else advance - private.nominalWidthX
+        )
+        pen = T2CharStringPen(width, None)
+        self.font.getGlyphSet()[source].draw(TransformPen(pen, (1, 0, 0, 1, shift, 0)))
+        return pen.getCharString(
+            private=self._top.Private, globalSubrs=self._cff.GlobalSubrs
+        )
+
+    def put_shifted(self, name: str, source: str, shift: float) -> None:
+        """Replace an alternate without duplicating its glyph ID; e.g. ``writer.put_shifted('i.ctxL', 'i', -20)``."""
+        if name == source or not self.has(name):
+            raise ValueError(
+                f"{name!r}: expected an existing alternate distinct from {source!r}"
+            )
+        strings = self._top.CharStrings
+        strings.charStringsIndex[strings.charStrings[name]] = self._shifted_charstring(
+            source, shift
+        )
+        self._remember_shift(name, source, shift)
+
+    def _remember_shift(self, name: str, source: str, shift: float) -> None:
+        advance, lsb = self.font["hmtx"][source]
+        self.font["hmtx"][name] = (advance, round(lsb + shift))
+        x0, y0, x1, y1 = self.bounds(source)
+        self.ink[name] = (x0 + shift, y0, x1 + shift, y1)
 
     def has(self, name: str) -> bool:
         return name in self._top.CharStrings

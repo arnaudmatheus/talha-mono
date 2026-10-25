@@ -38,3 +38,25 @@ def test_added_glyph_joins_the_glyph_order():
     assert writer.font.getGlyphOrder()[-1] == "A.titl"
     assert writer.has("A.titl")
     assert writer.bounds("A.titl") == (100, 0, 1000, 1460)
+
+
+def test_shifted_cff_copies_keep_widths_and_reject_duplicate_ids() -> None:
+    import pytest
+    from fontTools.pens.recordingPen import RecordingPen
+    from conftest import reloaded, square, tiny_font
+    from glyph_writer import GlyphWriter
+
+    font = reloaded(tiny_font({"i": [square(100, 0, 400)]}))
+    writer = GlyphWriter(font, 1160)
+    writer.add_shifted("i.ctxL", "i", -40)
+    writer.commit_glyph_order()
+    before = font.getGlyphOrder()[:]
+    writer.put_shifted("i.ctxL", "i", -20)
+    assert font.getGlyphOrder() == before
+    font = reloaded(font)
+    string = font["CFF "].cff.topDictIndex[0].CharStrings["i.ctxL"]
+    string.draw(RecordingPen())
+    assert string.width == font["hmtx"]["i.ctxL"][0] == 1160
+    assert GlyphWriter(font, 1160).bounds("i.ctxL")[0] == 80
+    with pytest.raises(ValueError, match="unused glyph"):
+        writer.add_shifted("i.ctxL", "i", -40)

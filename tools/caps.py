@@ -305,11 +305,21 @@ FIGURES: dict[str, StrokesFn] = {
 }
 
 L = letters.LETTERS
+
+
+def crossed_lower(drawings: dict[str, StrokesFn]) -> dict[str, StrokesFn]:
+    """Resolve crossed-letter bodies from the active style; e.g. ``crossed_lower(lower)['lslash']()``."""
+    return {
+        "lslash": lambda: drawings["l"]()
+        + [path(("M", (400, 600)), ("L", (740, 860)))],
+        "dcroat": lambda: drawings["d"]() + [bar(740, 1060, 1250)],
+        "hbar": lambda: drawings["h"]() + [bar(190, 480, 1250)],
+        "oslash": lambda: drawings["o"]() + [path(("M", (360, 60)), ("L", (880, 980)))],
+    }
+
+
 EXTRAS_LOWER: dict[str, StrokesFn] = {
-    "lslash": lambda: L["l"]() + [path(("M", (400, 600)), ("L", (740, 860)))],
-    "dcroat": lambda: L["d"]() + [bar(740, 1060, 1250)],
-    "hbar": lambda: L["h"]() + [bar(190, 480, 1250)],
-    "oslash": lambda: L["o"]() + [path(("M", (360, 60)), ("L", (880, 980)))],
+    **crossed_lower(L),
     "kgreenlandic": lambda: [
         path(*ENTRY(330, T), ("L", (330, 40))),
         path(("M", (880, T)), ("L", (340, 480))),

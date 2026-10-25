@@ -39,7 +39,8 @@ def test_icons_preserve_existing_letters_and_scale_only_horizontally() -> None:
     added = nerd.add_icons(font, icons)
     assert font.getBestCmap()[97] == "a"
     assert font.getBestCmap()[0xE001] == "a.nf"
-    assert set(added) == {"a.nf", "icon", "icon.nf"}
+    assert set(added) == {"a.nf", "icon"}
+    assert font.getBestCmap()[0xE002] == font.getBestCmap()[0xF0001] == "icon"
     assert font["hmtx"]["icon"] == (1160, round(31 * (1160 / 1240)))
     font["CFF "].cff.topDictIndex[0].CharStrings["a"].compile()
     assert font["CFF "].cff.topDictIndex[0].CharStrings["a"].bytecode == before
@@ -97,3 +98,29 @@ def test_stat_names_only_its_own_axis_values(
     assert [value.Value for value in values] == [weight, int(italic)]
     assert font["name"].getDebugName(values[0].ValueNameID) == label
     assert getattr(values[0], "LinkedValue", None) == (700 if weight == 400 else None)
+
+
+@pytest.mark.parametrize("source", ("cod-add", "1 bad/name", ".hidden", "", "x" * 90))
+def test_icon_names_are_valid_bounded_and_unique(source: str) -> None:
+    import re
+
+    first = nerd._icon_glyph_name(source, set())
+    second = nerd._icon_glyph_name(source, {first})
+    third = nerd._icon_glyph_name(source, {first, second})
+    for name in (first, second, third):
+        assert re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]{0,62}", name)
+    assert len({first, second, third}) == 3
+
+
+def test_icon_name_normalization_keeps_colliding_sources_and_aliases_distinct() -> None:
+    icons = tiny_font(
+        {"cod-add": [square(0, 0, 100)], "cod_add": [square(0, 0, 200)]}, 1240
+    )
+    for table in icons["cmap"].tables:
+        table.cmap = {0xE001: "cod-add", 0xE002: "cod_add", 0xE003: "cod-add"}
+    font = target_font()
+    added = nerd.add_icons(font, reloaded(icons))
+    assert added == {"cod_add": [0xE001, 0xE003], "cod_add.nf": [0xE002]}
+    assert font.getBestCmap()[0xE001] == font.getBestCmap()[0xE003]
+    strings = font["CFF "].cff.topDictIndex[0].CharStrings
+    assert strings["cod_add"].program != strings["cod_add.nf"].program

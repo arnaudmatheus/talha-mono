@@ -6,6 +6,7 @@ from collections.abc import Callable
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables import otTables as ot
 from fontTools.ttLib.tables.otBase import BaseTable
+from ot_walk import tables_under
 
 # Radon's stylistic sets that hold ligatures (ss01-ss10).
 STYLISTIC_SET = re.compile(r"ss(0[1-9]|10)")
@@ -43,8 +44,9 @@ def _subtable_outputs(subtable: BaseTable) -> set[str]:
 
 def _nested_lookups(subtable: BaseTable) -> list[int]:
     return [
-        rec.LookupListIndex
-        for rec in getattr(subtable, "SubstLookupRecord", None) or []
+        table.LookupListIndex
+        for table in tables_under([subtable])
+        if isinstance(table, ot.SubstLookupRecord)
     ]
 
 

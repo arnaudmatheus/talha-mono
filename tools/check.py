@@ -30,6 +30,11 @@ FAMILIES = [
     ("Talha Mono Bold", "TalhaMono-Bold.otf", "TalhaMono-BoldItalic.otf"),
     ("Talha Mono Wide", "TalhaMonoWide-Regular.otf", "TalhaMonoWide-Italic.otf"),
     ("Talha Mono Text", "TalhaMonoText-Regular.otf", "TalhaMonoText-Italic.otf"),
+    ("Talha Mono Bold Italic", "TalhaMono-BoldItalic.otf", None),
+    ("Talha Mono Wide Italic", "TalhaMonoWide-Italic.otf", None),
+    ("Talha Mono Wide Bold", "TalhaMonoWide-Bold.otf", None),
+    ("Talha Mono Wide Bold Italic", "TalhaMonoWide-BoldItalic.otf", None),
+    ("Talha Mono Text Italic", "TalhaMonoText-Italic.otf", None),
 ]
 
 

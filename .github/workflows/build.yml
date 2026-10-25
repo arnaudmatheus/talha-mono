@@ -57,6 +57,11 @@ jobs:
       - name: Tests
         run: pytest
 
+      - name: Reading review model
+        run: |
+          node --check tools/reading_ui/review.mjs
+          node tests/test_reading_review.mjs
+
   build:
     name: build (${{ matrix.name }})
     runs-on: ubuntu-24.04
@@ -158,6 +163,9 @@ jobs:
       - name: Regression check
         run: python tools/check.py --base baseline --new build --report check-report.md
 
+      - name: Contextual accents and fixed cells
+        run: python tools/context_check.py --fonts build --out context-check.json
+
       - name: Keep the fonts and the report
         if: always()
         uses: actions/upload-artifact@v7
@@ -166,6 +174,7 @@ jobs:
           path: |
             build/*.otf
             check-report.md
+            context-check.json
           if-no-files-found: warn
 
   qa:

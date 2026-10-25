@@ -1,7 +1,7 @@
 """Step 1: the base letters, capitals and figures, drawn and centred."""
 
 import pen
-from build_state import BuildState
+from build_state import BuildState, ContextForm
 from glyph_table import band_top
 
 # Optical centring (roadmap D1): r and k sit on their ink's centre of mass,
@@ -27,3 +27,4 @@ def place_letters(state: BuildState) -> None:
         if gname == "i" and state.writer.has("i.loclTRK"):
             state.writer.put("i.loclTRK", shape)
             state.replaced.append("i.loclTRK")
+            state.context_forms["i.loclTRK"] = ContextForm("i", 1.0, 0.0)
